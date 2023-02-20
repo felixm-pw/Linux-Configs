@@ -1,0 +1,46 @@
+# Felix's i3status config file 
+
+general {
+        colors = true
+  	color_good = "#00FF00"
+  	color_degraded = "#FF9400"
+  	color_bad = "#FF0000"
+}
+
+order += "wireless wlan0"
+order += "wireless tun0"
+order += "volume master"
+order += "battery all"
+order += "tztime local"
+
+wireless wlan0 {
+        format_up = "%essid [%ip]"
+        format_down = "wifi: [down]"
+}
+
+wireless tun0 {
+	format_up = "vpn: [%ip]"
+	format_down = "vpn: down"
+}
+
+volume master {
+        format = "volume: [%volume]"
+        format_muted = "volume: [mute]"
+        device = "default"
+        mixer = "Master"
+}
+
+battery all {
+        format = "%status [%percentage]"
+        format_down = "No battery"
+        status_chr = "charging:"
+        status_bat = "battery:"
+        status_unk = "?"
+        status_full = "battery:"
+        path = "/sys/class/power_supply/BAT%d/uevent"
+        low_threshold = 10
+}
+
+tztime local {
+        format = "[%d-%m-%y] [%H:%M:%S]"
+}
